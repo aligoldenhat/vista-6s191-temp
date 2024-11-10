@@ -53,7 +53,7 @@ class LidarSynthesis:
         self._fov_rad = self._fov * np.pi / 180.
 
         self._dims = (self._fov[:, 1] - self._fov[:, 0]) / self._res
-        self._dims = np.ceil(self._dims).astype(np.int)[:, np.newaxis]
+        self._dims = np.ceil(self._dims).astype(int)[:, np.newaxis]
 
         yaw_fov = input_yaw_fov if yaw_fov is None else yaw_fov
         pitch_fov = input_pitch_fov if pitch_fov is None else pitch_fov
@@ -333,7 +333,7 @@ class LidarSynthesis:
         slope = self._dims / fov_range
         inds = slope * (angles - self._fov_rad[:, [0]])
 
-        inds = np.floor(inds).astype(np.int)
+        inds = np.floor(inds).astype(int)
         np.clip(inds, np.zeros((2, 1)), self._dims - 1, out=inds)
 
         return inds
