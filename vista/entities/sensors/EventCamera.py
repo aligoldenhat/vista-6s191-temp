@@ -311,7 +311,7 @@ class EventCamera(BaseSensor):
 
                                     _mode = 1
                                     if _mode == 0:
-                                        _uv = np.round(_uv).astype(np.int)
+                                        _uv = np.round(_uv).astype(int)
                                     elif _mode == 1:
                                         _uv_floor = np.floor(_uv)
                                         _uv_ceil = np.ceil(_uv)
@@ -366,7 +366,7 @@ class EventCamera(BaseSensor):
 
                                         _uv = _uv_score[
                                             _uv_score[:, 2] >= 0.2, :2].astype(
-                                                np.int)
+                                                int)
                                     else:
                                         _uv_floor = np.floor(_uv)
                                         _uv_ceil = np.ceil(_uv)
@@ -390,7 +390,7 @@ class EventCamera(BaseSensor):
                                                      axis=1)
                                         ],
                                                              axis=0)
-                                        _uv = _uv.astype(np.int)
+                                        _uv = _uv.astype(int)
 
                                     _valid_mask = (_uv[:,0] > 0) & (_uv[:,0] < cam_h) & \
                                                 (_uv[:,1] > 0) & (_uv[:,1] < cam_w)
@@ -408,7 +408,7 @@ class EventCamera(BaseSensor):
                                     log_d_interp <= negative_C)
                             event_timestamp += dt
                             event_timestamp_us = (event_timestamp *
-                                                  1e6).astype(np.int64)
+                                                  1e6).astype(int)
                             positive_events = np.concatenate([
                                 positive_uv,
                                 np.tile([event_timestamp_us, 1],
@@ -471,8 +471,8 @@ class EventCamera(BaseSensor):
 
                 mul_x = cam_w / float(ori_cam_w)
                 mul_y = cam_h / float(ori_cam_h)
-                events_x = (events_x * mul_x).astype(np.int)
-                events_y = (events_y * mul_y).astype(np.int)
+                events_x = (events_x * mul_x).astype(int)
+                events_y = (events_y * mul_y).astype(int)
 
                 positive_mask = events_p == 1
                 negative_mask = events_p == 0
