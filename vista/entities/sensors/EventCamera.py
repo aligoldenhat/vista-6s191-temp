@@ -408,7 +408,7 @@ class EventCamera(BaseSensor):
                                     log_d_interp <= negative_C)
                             event_timestamp += dt
                             event_timestamp_us = (event_timestamp *
-                                                  1e6).astype(int)
+                                                  1e6).astype(np.int64)
                             positive_events = np.concatenate([
                                 positive_uv,
                                 np.tile([event_timestamp_us, 1],
